@@ -1,2 +1,2 @@
 # Chess
-The chess game.
+The chess game from scratch.
