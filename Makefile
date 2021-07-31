@@ -10,8 +10,11 @@ B = bin
 all: $(O) $(B) $(O)/Main.o
 	$(CC) $(O)/*.o -o $(B)/$(EXEC) $(LIBS)
 
-$(O)/Main.o:
+$(O)/Main.o: $(O)/Engine.o
 	$(CC) $(S)/Main.cpp -c -o $(O)/Main.o $(STD) $(FLAGS)
+
+$(O)/Engine.o:
+	$(CC) $(S)/sfml/Engine.cpp -c -o $(O)/Engine.o $(STD) $(FLAGS)
 
 clean: $(O) $(B)
 	rm -r $(O)

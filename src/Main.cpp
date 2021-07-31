@@ -1,9 +1,11 @@
 //#include "rules/Piece.hpp"
 
 #include <iostream>
+#include "sfml/Engine.hpp"
 
 int main()
 {
-	std::cout << "Hello world" << std::endl;
+	Engine e;
+    e.run();
     return 0;
 }
