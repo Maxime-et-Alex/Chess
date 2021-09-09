@@ -1,9 +1,12 @@
-//#include "rules/Piece.hpp"
-
 #include <iostream>
+
+#include "game/Board.hpp"
 
 int main()
 {
-	std::cout << "Hello world" << std::endl;
+	Board board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
+	board.printBoard();
+	
     return 0;
 }

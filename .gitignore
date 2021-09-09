@@ -34,3 +34,6 @@
 # Build
 bin
 obj
+
+# Vscode
+.vscode

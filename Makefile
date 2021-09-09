@@ -10,8 +10,17 @@ B = bin
 all: $(O) $(B) $(O)/Main.o
 	$(CC) $(O)/*.o -o $(B)/$(EXEC) $(LIBS)
 
-$(O)/Main.o:
+$(O)/Main.o: $(O)/Board.o
 	$(CC) $(S)/Main.cpp -c -o $(O)/Main.o $(STD) $(FLAGS)
+
+$(O)/Board.o: $(O)/Rules.o
+	$(CC) $(S)/game/Board.cpp -c -o $(O)/Board.o $(STD) $(FLAGS)
+
+$(O)/Rules.o: $(O)/Piece.o
+	$(CC) $(S)/game/Rules.cpp -c -o $(O)/Rules.o $(STD) $(FLAGS)
+
+$(O)/Piece.o:
+	$(CC) $(S)/game/Piece.cpp -c -o $(O)/Piece.o $(STD) $(FLAGS)
 
 clean: $(O) $(B)
 	rm -r $(O)
