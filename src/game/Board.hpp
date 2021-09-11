@@ -6,35 +6,43 @@
 
 #include "Rules.hpp"
 
-using GameState = std::tuple<bool, bool, bool, bool, unsigned int>;
+struct GameState
+{
+	bool whiteToPlay;
+	bool roqueK;
+	bool roqueQ;
+	bool roquek;
+	bool roqueq;
+	int caseEnPassant;
+};
 
 class Board
 {
 public :
 	Board(std::string fen);
 
-	ListOfMoves allowedMoves(Color);
-	void setPosition(std::string fen);
+	void updateAllowedMoves(Color);
+	void updateAllMoves(Color);
 	void moveAPiece(Move);
 	void undo();
 
 	void printBoard() const;
 
 private :
-	ListOfMoves allMoves(Color);
+	void setPosition(std::string fen);
 	bool isMovePossible(Move);
 	void toggleTurn();
+	bool isPieceUnderAttack(Color);
 	bool isKingUnderAttack(Color);
 
 public :
 	std::vector<Piece*> m_cases;
-
-private :
-	bool m_whiteToPlay;
-	std::vector<Piece*> m_pieces;
-	std::vector<GameState*> m_gameStates;
 	ListOfMoves m_allMoves;
 	ListOfMoves m_allowedMoves;
+	std::vector<GameState*> m_gameStates;
+
+private :
+	std::vector<PieceWithPos*> m_pieces;
 	ListOfMoves m_pgn;
 	std::vector<Piece*> m_piecesTooked;
 };
