@@ -30,6 +30,7 @@ public :
 private :
 	void setPosition(std::string fen);
 	void updateAllMoves();
+	void updateAllMovesOppositeColor();
 	bool isMovePossible(Move&, bool amongAllMoves);
 	void toggleTurn();
 	bool isPieceUnderAttack(unsigned int) const;
