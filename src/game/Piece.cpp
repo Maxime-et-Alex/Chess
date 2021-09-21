@@ -3,7 +3,6 @@
 Piece::Piece(char c)
 {
 	char c_min;
-	m_code = c;
 	
 	if (c == '-')
 	{
@@ -51,48 +50,42 @@ Piece::Piece(Color color, Type type)
 : m_color(color)
 , m_type(type)
 {
-	char c_min;
+}
 
-	switch (type)
+char Piece::getCode() const
+{
+	char code;
+
+	switch (m_type)
 	{
 		case Type::PAWN:
-			c_min = 'p';
+			code = 'p';
 			break;
 		case Type::KNIGHT:
-			c_min = 'n';
+			code = 'n';
 			break;
 		case Type::BISHOP:
-			c_min = 'b';
+			code = 'b';
 			break;
 		case Type::ROOK:
-			c_min = 'r';
+			code = 'r';
 			break;
 		case Type::QUEEN:
-			c_min = 'q';
+			code = 'q';
 			break;
 		case Type::KING:
-			c_min = 'k';
+			code = 'k';
 			break;
 		default:
-			c_min = '-';
+			code = '-';
 			break;
 	}
 
 	if (m_type != Type::None)
 	{
-		if (m_color == Color::WHITE) {m_code = c_min - 32;}
-		else {m_code = c_min;}
+		if (m_color == Color::WHITE) {code = code - 32;}
+		else {code = code;}
 	}
-}
 
-PieceWithPos::PieceWithPos(unsigned int p64, char c)
-: Piece(c)
-, m_p64(p64)
-{
-}
-
-PieceWithPos::PieceWithPos(unsigned int p64, Color color, Type type)
-: Piece(color, type)
-, m_p64(p64)
-{
+	return code;
 }

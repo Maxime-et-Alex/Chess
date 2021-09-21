@@ -8,7 +8,7 @@
 
 struct GameState
 {
-	bool whiteToPlay;
+	Color colorToPlay;
 	bool roqueK;
 	bool roqueQ;
 	bool roquek;
@@ -21,30 +21,33 @@ class Board
 public :
 	Board(std::string fen);
 
-	void updateAllowedMoves(Color);
-	void updateAllMoves(Color);
-	void moveAPiece(Move);
-	void undo();
+	void updateAllowedMoves();
+	void moveAPiece(Move&, bool amongAllMoves=false, bool needVerification=true, bool updateMoves=true);
+	void undo(bool updateMoves=true);
 
 	void printBoard() const;
 
 private :
 	void setPosition(std::string fen);
-	bool isMovePossible(Move);
+	void updateAllMoves();
+	bool isMovePossible(Move&, bool amongAllMoves);
 	void toggleTurn();
-	bool isPieceUnderAttack(Color);
-	bool isKingUnderAttack(Color);
+	bool isPieceUnderAttack(unsigned int) const;
+	bool isKingUnderAttack() const;
+	Color getColor() const;
+	Color getOppositeColor() const;
 
 public :
 	std::vector<Piece*> m_cases;
-	ListOfMoves m_allMoves;
 	ListOfMoves m_allowedMoves;
 	std::vector<GameState*> m_gameStates;
 
 private :
-	std::vector<PieceWithPos*> m_pieces;
+	ListOfMoves m_allMoves;
+	ListOfMoves m_allMovesOppositeColor;
 	ListOfMoves m_pgn;
-	std::vector<Piece*> m_piecesTooked;
+	std::vector<Piece*> m_takenPieces;
+	std::vector<int> m_positionsOfTakenPieces;
 };
 
 #endif //BOARD_HPP
