@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-#include <iostream>
-#include <random>
-#include <chrono>
-
-#include "game/Board.hpp"
+//#include "game/Board.hpp"
 #include "sfml/Engine.hpp"
 
 int main()
@@ -18,7 +13,7 @@ int main()
 		std::cerr << err.what() << std::endl;
 		return 1;
 	}
-	
+	/*
 	Board board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 	int index = 0;
 	board.printBoard();
@@ -39,6 +34,6 @@ int main()
 
 		board.printBoard();
 	}
-
+	*/
     return 0;
 }

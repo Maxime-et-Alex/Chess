@@ -1,6 +1,9 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
+#include <random>
+#include <chrono>
+
 #include "BoardDisp.hpp"
 
 class Engine
@@ -22,6 +25,11 @@ private :
 	static const sf::Time m_timePerFrame;
 	
 	Board m_board;
+	BoardDisp m_boardDisp;
+
+	int index;
+	unsigned seed;
+	std::default_random_engine generator;
 };
 
 #endif //ENGINE_HPP

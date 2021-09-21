@@ -374,7 +374,6 @@ bool Board::isKingUnderAttack() const
 		}
 	}
 
-	std::cout << Rules::coord[p64] << std::endl;
 	return isPieceUnderAttack(p64);
 }
 
