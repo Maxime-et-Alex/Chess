@@ -76,6 +76,7 @@ void Board::updateAllowedMoves()
 	for(std::size_t i = 0; i < m_allMoves.size(); ++i)
 	{
 		moveAPiece(*m_allMoves[i], true, false, false);
+		updateAllMovesOppositeColor();
 		if(!isKingUnderAttack())
 		{
 			m_allowedMoves.emplace_back(m_allMoves[i]);
@@ -148,6 +149,16 @@ void Board::updateAllMoves()
 		{
 			m_allMoves.emplace_back(new Move{4, 2});
 		}
+	}
+}
+
+void Board::updateAllMovesOppositeColor()
+{
+	m_allMovesOppositeColor.clear();
+
+	for (std::size_t i = 0; i < m_cases.size(); ++i)
+	{
+		Rules::movesForPiece(m_allMovesOppositeColor, i, *this, getOppositeColor());
 	}
 }
 
